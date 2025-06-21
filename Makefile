@@ -10,15 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:=	libftprintf.a
+NAME			:=	libftprintf.a
 
 CC				:=	cc
-CFLAG			:=	-Wall -Wextra -Werror -g3
+CFLAG			:=	-Wall -Wextra -Werror
 
-SRCS_FILES		:=	ft_printf.c ft_print_char.c ft_print_str.c ft_print_nbr.c \
+SRCS_FILES		:=	ft_printf.c
+#  ft_print_char.c ft_print_str.c ft_print_nbr.c \
 					ft_print_hex.c ft_print_pointer.c ft_print_unsigned.c \
 
-LIBFT			:=	libft
+LIBFT			:=	libft/
 SRC_DIR			:=	srcs/
 INC_DIR			:=	includes/
 
@@ -28,13 +29,12 @@ OBJS			:=	$(SRCS:%.c=%.o)
 all				:	$(NAME)
 
 $(NAME)			:	$(OBJS) Makefile
-	@make -C $(LIBFT)
-	@cp libft/libft.a .
-	@mv libft.a $(NAME)
-	ar rcs -o $(NAME) $^
+	make -C ${LIBFT}
+	cp libft/libft.a ${NAME}
+	ar rcs $(NAME) $(OBJS)
 
 $(OBJS)			:	%.o : %.c
-	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT) -c $< -o $@
 
 clean			:
 	rm -rf $(OBJS) $(BONUS_OBJS)
