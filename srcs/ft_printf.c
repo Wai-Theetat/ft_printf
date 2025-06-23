@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int ft_print_from_format(char format, va_list args)
+int	ft_print_from_format(char format, va_list args)
 {
 	if (format == 'c')
 		return (ft_print_char(va_arg(args, int)));
