@@ -1,4 +1,7 @@
 printfTester/
+ft_printf_tester/
 
 main.c
 compile.mk
+*.o
+*.a
